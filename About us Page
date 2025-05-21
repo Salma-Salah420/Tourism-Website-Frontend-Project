@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us</title>
+  <link rel="stylesheet" href="stylee.css">
+  <style>
+    /* Additional styles specific to About page */
+    .about-hero {
+      background: linear-gradient(rgba(0, 53, 128, 0.8), rgba(0, 53, 128, 0.8)), 
+                  url('images/about-hero.jpg') no-repeat center center/cover;
+      color: white;
+      text-align: center;
+      padding: 100px 20px;
+    }
+    
+    .about-hero h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+    }
+    
+    .mission-section {
+      max-width: 1200px;
+      margin: 60px auto;
+      padding: 0 20px;
+      text-align: center;
+    }
+    
+    .mission-section h2 {
+      color: #003580;
+      font-size: 2rem;
+      margin-bottom: 30px;
+    }
+    
+    .mission-section p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: #333;
+      max-width: 800px;
+      margin: 0 auto 40px;
+    }
+    
+    .team-section {
+      background-color: #f5f5f5;
+      padding: 60px 20px;
+    }
+    
+    .team-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .team-container h2 {
+      text-align: center;
+      color: #003580;
+      font-size: 2rem;
+      margin-bottom: 40px;
+    }
+    
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+    
+    .team-member {
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+    
+    .team-member:hover {
+      transform: translateY(-10px);
+    }
+    
+    .team-member img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+    }
+    
+    .member-info {
+      padding: 20px;
+    }
+    
+    .member-info h3 {
+      color: #003580;
+      margin-bottom: 5px;
+    }
+    
+    .member-info p {
+      color: #0071c2;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+    
+    .stats-section {
+      background-color: #003580;
+      color: white;
+      padding: 60px 20px;
+      text-align: center;
+    }
+    
+    .stats-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 30px;
+    }
+    
+    .stat-item h3 {
+      font-size: 3rem;
+      color: #ffd700;
+      margin-bottom: 10px;
+    }
+    
+    .values-section {
+      max-width: 1200px;
+      margin: 60px auto;
+      padding: 0 20px;
+    }
+    
+    .values-section h2 {
+      text-align: center;
+      color: #003580;
+      font-size: 2rem;
+      margin-bottom: 40px;
+    }
+    
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+    
+    .value-card {
+      background: white;
+      border-radius: 8px;
+      padding: 30px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+    
+    .value-card i {
+      font-size: 2.5rem;
+      color: #0071c2;
+      margin-bottom: 20px;
+    }
+    
+    .value-card h3 {
+      color: #003580;
+      margin-bottom: 15px;
+    }
+    
+    @media (max-width: 768px) {
+      .about-hero h1 {
+        font-size: 2rem;
+      }
+      
+      .mission-section h2,
+      .team-container h2,
+      .values-section h2 {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <a href="../../your guide/Salma - HomePage/index.html" class="logo">Voya<span>GO</span></a>
+    <nav>
+      <a href="../../your guide/Nada - Flights, Cars Rentals/flights.html">Flights</a>
+      <a href="../../your guide/Maria - Stays/stays.html">Stays</a>
+      <a href="../../your guide/Nada - Flights, Cars Rentals/CarRentals.html">Car Rentals</a>
+      <a href="../../your guide/Mariem -Destinations/destinations.html">Destinations</a>
+      <a href="../../your guide/Ahmed - Attractions , Tours/attractions.html">Attractions</a>
+      <a href="../../your guide/Ahmed - Attractions , Tours/tours.html">Tours</a>
+      <a href="../../your guide/Jana - currency converter ,destenation vidos&images/weather/index.html">Weather</a>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="about-hero">
+    <h1>Our Story</h1>
+    <p>Discover the journey behind VoyaGo and the passionate team that makes travel dreams come true</p>
+  </section>
+
+  <!-- Mission Section -->
+  <section class="mission-section">
+    <h2>Our Mission</h2>
+    <p>At VoyaGo, we believe travel should be accessible, enjoyable, and stress-free for everyone. Founded in 2023 by a group of travel enthusiasts in Cairo, we've grown from a small startup to one of Egypt's leading travel platforms, helping thousands of travelers explore the world every year.</p>
+    <p>Our mission is to simplify travel planning while providing exceptional value and service, ensuring every journey is as memorable as the destination itself.</p>
+  </section>
+
+>
+
+  <!-- Stats Section -->
+  <section class="stats-section">
+    <div class="stats-container">
+      <div class="stat-item">
+        <h3>50K+</h3>
+        <p>Happy Travelers</p>
+      </div>
+      <div class="stat-item">
+        <h3>120+</h3>
+        <p>Destinations</p>
+      </div>
+      <div class="stat-item">
+        <h3>24/7</h3>
+        <p>Customer Support</p>
+      </div>
+      <div class="stat-item">
+        <h3>98%</h3>
+        <p>Positive Reviews</p>
+      </div>
+    </div>
+  </section>
+
+    <!-- Values Section -->
+    <section class="values-section">
+    <h2>Our Core Values</h2>
+    <div class="values-grid">
+        <div class="value-card">
+        <i class="fas fa-globe"></i>
+        <h3>Global Perspective</h3>
+        <p>We bring the world closer with carefully curated travel experiences across continents.</p>
+        </div>
+        <div class="value-card">
+        <i class="fas fa-hand-holding-heart"></i>
+        <h3>Customer First</h3>
+        <p>Your satisfaction is our top priority, from booking to return.</p>
+        </div>
+        <div class="value-card">
+        <i class="fas fa-lightbulb"></i>
+        <h3>Innovation</h3>
+        <p>We constantly improve our services with the latest travel technology.</p>
+        </div>
+        <div class="value-card">
+        <i class="fas fa-gem"></i>
+        <h3>Quality</h3>
+        <p>Only the best partners and services make it to our platform.</p>
+        </div>
+        <div class="value-card">
+        <i class="fas fa-users"></i>
+        <h3>Community</h3>
+        <p>We build bridges between cultures and support local communities we visit.</p>
+        </div>
+        <div class="value-card">
+        <i class="fas fa-map-marked-alt"></i>
+        <h3>Adventure</h3>
+        <p>We believe travel should inspire wonder and create lifelong memories.</p>
+        </div>
+    </div>
+    </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>VoyaGo.com | Our Services: Flights, Hotels, Car Rentals</p>
+    <p>Contact Us: info@VoyaGo.com | 19990 | Helwan, Cairo, Egypt</p>
+  </footer>
+
+</body>
+</html>
