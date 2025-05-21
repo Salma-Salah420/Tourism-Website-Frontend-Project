@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Book a Trip</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" />
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: white;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      color: #333;
+    }
+
+    header, footer {
+      background-color: #0f315f;
+      color: white;
+      text-align: center;
+      padding: 15px 0;
+      font-weight: bold;
+      font-size: 1.2rem;
+      letter-spacing: 1px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    }
+
+    .container {
+      flex-grow: 1;
+      padding: 20px;
+      width: 95%;
+      margin: 0 auto;
+      background: rgba(255,255,255,0.9);
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
+
+    .search-box {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 30px;
+      padding: 0 10px;
+    }
+
+    .search-box select,
+    .search-box button {
+      padding: 12px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-family: inherit;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .search-box select {
+      min-width: 150px;
+    }
+
+    .search-box button {
+      background-color: #0f315f;
+      color: white;
+      font-weight: bold;
+      border: none;
+      min-width: 120px;
+    }
+
+    .search-box button:hover {
+      background-color: #0f315f;
+    }
+
+    .results {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 15px;
+      padding: 10px;
+      width: 100%;
+    }
+
+    .hotel-card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+      overflow: hidden;
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .hotel-card:hover {
+      transform: scale(1.03);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+    }
+
+    .hotel-card img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      display: block;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .hotel-name {
+      padding: 12px 8px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      color: #003580;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    @media (max-width: 768px) {
+      .results {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      }
+      
+      .hotel-card img {
+        height: 140px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .results {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 10px;
+      }
+      
+      .hotel-card img {
+        height: 120px;
+      }
+      
+      .hotel-name {
+        font-size: 1rem;
+        padding: 8px 4px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header style="background-color: #0f315f; padding: 15px 30px; color: white; display: flex; align-items: center; justify-content: flex-start;">
+    <div style="font-size: 24px; font-weight: bold;">
+      <span style="color: white;">Voya</span><span style="color: #fcd116;">GO</span>
+    </div>
+    <nav style="margin-right: auto;">
+      <a href="#" style="color: white; margin: 0 10px; text-decoration: none;">Flights</a>
+      <a href="#" style="color: white; margin: 0 10px; text-decoration: none;">Stays</a>
+      <a href="#" style="color: white; margin: 0 10px; text-decoration: none;">Car Rentals</a>
+      <a href="#" style="color: white; margin: 0 10px; text-decoration: none;">Destinations</a>
+      <a href="#" style="color: white; margin: 0 10px; text-decoration: none;">Attractions</a>
+      <a href="#" style="color: white; margin: 0 10px; text-decoration: none;">Tours</a>
+      <a href="#" style="color: white; margin: 0 10px; text-decoration: none;">Weather</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <section class="search-box">
+      <select id="destination">
+        <option value="">All Destinations</option>
+        <option value="Egypt">Egypt</option>
+        <option value="France">France</option>
+        <option value="Turkey">Turkey</option>
+        <option value="Russia">Russia</option>
+        <option value="Italy">Italy</option>
+        <option value="England">England</option>
+      </select>
+
+      <select id="minStars">
+        <option value="">Min Stars</option>
+        <option value="1">1 Star</option>
+        <option value="2">2 Stars</option>
+        <option value="3">3 Stars</option>
+        <option value="4">4 Stars</option>
+        <option value="5">5 Stars</option>
+      </select>
+
+      <button id="searchBtn">Search</button>
+    </section>
+
+    <section class="results"></section>
+  </div>
+
+  <footer style="background-color: #0f315f; color: white; padding: 20px; text-align: center;">
+    <p>VoyaGO.com | Our Services: Flights, Hotels, Car Rentals</p>
+    <p>Contact Us: <a href="mailto:info@VoyaGO.com" style="color: white;">info@VoyaGO.com</a> | 19990 | Helwan, Cairo, Egypt</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script>
+    const hotelsByCountry = {
+      Egypt: [
+        { name: "Marriott Mena House ", rating: 4, price: 90, image: "https://th.bing.com/th/id/R.0a0242f3f453283dde615a7254f8b0cb?rik=jl53F67QzdO7hg&pid=ImgRaw&r=0"</a> },
+        { name: "Four Seasons Hotel Cairo at Nile Plaza", rating: 5, price: 150, image: "https://www.fourseasons.com/alt/img-opt/~70.1530/publish/content/dam/fourseasons/images/web/CAI/CAI_495_original.jpg" },
+        { name: "Hilton Alexandria Corniche", rating: 3, price: 80, image: "https://www.hotel-board.com/picture/hilton-alexandria-corniche-hotel-587277.jpg" }
+      ],
+      France: [
+        { name: "Paris Central Inn", rating: 4, price: 180, image: "https://th.bing.com/th/id/OIP.MKdQi1YzJ497Mea5rHU4sAAAAA?cb=iwc2&rs=1&pid=ImgDetMain" },
+        { name: "Lyon Comfort Stay", rating: 4, price: 140, image: "https://th.bing.com/th/id/OIP.BilyYAZNCg_-0mLp-R6QXQHaFj?cb=iwc2&rs=1&pid=ImgDetMain" },
+        { name: "Marseille Grand", rating: 5, price: 190, image: "https://th.bing.com/th/id/R.f7c5cbe2e68b42cad22652d0de1b33c5?rik=e325JLxlr0I9Yg&pid=ImgRaw&r=0" }
+      ],
+      Turkey: [
+        { name: "Pera Palace Hotel", rating: 5, price: 110, image: "https://th.bing.com/th/id/OIP.5e3GrL1XgnI-vgN3sRxqxAHaE7?cb=iwc2&rs=1&pid=ImgDetMain" },
+        { name: "Kempinski Hotel Barbaros Bay", rating: 4, price: 120, image: "https://th.bing.com/th/id/OIP.v6Yhfbf7L4FBDVyYQArRdgHaDW?cb=iwc2&rs=1&pid=ImgDetMain" },
+        { name: "Swissôtel Büyük Efes", rating: 3, price: 90, image: "https://th.bing.com/th/id/OIP.zzO-MA17T-ACKOjklCBPIAHaEC?cb=iwc2&rs=1&pid=ImgDetMain" }
+      ],
+      Russia: [
+        { name: "Hotel Astoria", rating: 4, price: 95, image: "https://th.bing.com/th/id/OIP.4lFe-SLzYV73EzpOv9WrmwHaE7?cb=iwc2&rs=1&pid=ImgDetMain" },
+        { name: "Savoy Hotel", rating: 4, price: 100, image: "https://www.thesun.ie/wp-content/uploads/sites/3/2019/02/NINTCHDBPICT000236529393.jpg" },
+        { name: "Hotel National", rating: 4, price: 110, image: "https://th.bing.com/th/id/R.9df35eae5131607b0bb57959f6ebbe46?rik=njmGJXXhngp3ug&pid=ImgRaw&r=0" }
+      ],
+      Italy: [
+        { name: "Le Sirenuse", rating: 5, price: 140, image: "https://th.bing.com/th/id/R.8be6af8816a6ebd0eea5228caa63f02f?rik=%2fRaLNmRruJGR5Q&pid=ImgRaw&r=0" },
+        { name: "Hotel Danieli ", rating: 4, price: 160, image: "https://th.bing.com/th/id/OIP.vTb_wx3TQJZZD6cqZRGQBwHaC9?cb=iwc2&rs=1&pid=ImgDetMain" },
+        { name: "Palazzo Dama", rating: 3, price: 130, image: "https://th.bing.com/th/id/OIP.mpfuToftq0287Lwl2IeITwHaE8?cb=iwc2&rs=1&pid=ImgDetMain" }
+      ],
+      England: [
+        { name: "The Ritz", rating: 4, price: 160, image: "https://th.bing.com/th/id/OIP.MXLv1FArQ5pYD28_3GRp8QHaFj?cb=iwc2&rs=1&pid=ImgDetMain" },
+        { name: "The Midland ", rating: 3, price: 120, image: "https://th.bing.com/th/id/OIP.ondPR0UaeiZbjOCKkaaQ_AHaFN?cb=iwc2&rs=1&pid=ImgDetMain" },
+        { name: "The Randolph Hotel", rating: 4, price: 140, image: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/13/6a/b8/69/randolph-exterior.jpg?w=900&h=-1&s=1" }
+      ]
+    };
+
+    const allHotels = Object.values(hotelsByCountry).flat();
+
+    function renderHotels(hotels) {
+      const results = document.querySelector(".results");
+      results.innerHTML = "";
+
+      if (hotels.length === 0) {
+        results.innerHTML = "<p style='grid-column:1/-1; text-align:center; color:#777;'>No hotels found matching your criteria.</p>";
+        return;
+      }
+
+      hotels.forEach(hotel => {
+        const card = document.createElement("div");
+        card.className = "hotel-card";
+        card.innerHTML = `
+          <img src="${hotel.image}" alt="${hotel.name}" loading="lazy" />
+          <div class="hotel-name">${hotel.name}</div>
+        `;
+        results.appendChild(card);
+      });
+    }
+
+    document.getElementById("searchBtn").addEventListener("click", () => {
+      const destination = document.getElementById("destination").value;
+      const minStars = parseInt(document.getElementById("minStars").value);
+
+      let hotels;
+
+      if(destination) {
+        hotels = hotelsByCountry[destination] || [];
+      } else {
+        hotels = allHotels;
+      }
+
+      if(!isNaN(minStars)) {
+        hotels = hotels.filter(hotel => hotel.rating >= minStars);
+      }
+
+      renderHotels(hotels);
+    });
+
+    renderHotels(allHotels);
+  </script>
+</body>
+</html> , can you handle this code without do any changes in logic of code
